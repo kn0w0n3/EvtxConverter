@@ -1,2 +1,2 @@
 # EvtxConverter
-Convert EVTX files to JSON, XML, or CSV
+Convert EVTX files to JSON, XML, CSV
