@@ -47,6 +47,7 @@ private:
     QProcess convertEvtxToXmlProcess;
     QProcess convertEvtxToJsonProcess;
     QProcess convertEvtxToFullJsonProcess;
+    QProcess convertEvtxToCsvProcess;
 
     QString convertEvtxFileName = "";
     QString convertEvtxFullFilePath = "";

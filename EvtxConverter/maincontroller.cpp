@@ -41,13 +41,14 @@ void MainController::ce_SaveToPath(){
 
 //Convert an extx file to json, xml, or csv
 void MainController::fileConvertEvtx(QString convertType, QString fPah, QString savePath, QString iFileName ){
+
     if(convertType == "JSON"){
         //qDebug() << "IN CONVERT EVTX TO JSON........";
         emit fileConvertEvtxStatus("EVTX to JSON conversion process starting " + QDateTime::currentDateTime().toString("MM/dd/yyyy h:mm:ss ap"));
         emit fileConvertEvtxStatus("Please Wait....");
         QStringList args;
         //Set a permanent location for deployment
-        args << "Set-Location -Path C:/Users/Voldem0rt/Documents/Qt_Projects/Lumberjack/EvtxeCmd/;"
+        args << "Set-Location -Path C:/Users/Voldem0rt/Documents/Qt_Projects/EvtxConverter/EvtxeCmd/;"
              << "./EvtxECmd.exe -f " + fPah.trimmed() +  " --json " +  savePath.trimmed() + " --jsonf " + iFileName.trimmed() + ".json";
 
         convertEvtxToJsonProcess.connect(&convertEvtxToJsonProcess, &QProcess::readyReadStandardOutput, this, &MainController::processConvertStdOutInfo);
@@ -61,7 +62,7 @@ void MainController::fileConvertEvtx(QString convertType, QString fPah, QString 
         emit fileConvertEvtxStatus("Please Wait....");
         QStringList args;
         //Set a permanent location for deployment
-        args << "Set-Location -Path C:/Users/Voldem0rt/Documents/Qt_Projects/Lumberjack/EvtxeCmd/;"
+        args << "Set-Location -Path C:/Users/Voldem0rt/Documents/Qt_Projects/EvtxConverter/EvtxeCmd/;"
              << "./EvtxECmd.exe -f " + fPah.trimmed() +  " --fj --json " +  savePath.trimmed() + " --jsonf " + iFileName.trimmed() + ".json";
 
         //convertEvtxToFullJsonProcess.connect(&convertEvtxToFullJsonProcess, &QProcess::readyReadStandardOutput, this, &MainController::processConvertStdOutInfo);
@@ -76,13 +77,13 @@ void MainController::fileConvertEvtx(QString convertType, QString fPah, QString 
         emit fileConvertEvtxStatus("Please Wait....");
 
         QStringList args;
-        args << "Set-Location -Path C:/Users/Voldem0rt/Documents/Qt_Projects/Lumberjack/EvtxeCmd/;"
+        args << "Set-Location -Path C:/Users/Voldem0rt/Documents/Qt_Projects/EvtxConverter/EvtxeCmd/;"
              << "./EvtxECmd.exe -f " + fPah.trimmed() +  " --xml " +  savePath.trimmed() + " --xmlf " + iFileName.trimmed() + ".xml";
 
         //convertSecEvtxToXmlProcess.connect(&convertSecEvtxToXmlProcess, &QProcess::readyReadStandardOutput, this, &MainController::processStdOutSecLogInfo);
         //convertSecEvtxToXmlProcess.connect(&convertSecEvtxToXmlProcess, &QProcess::readyReadStandardError, this, &MainController::processErrorSecLogInfo);
-        connect(&convertSecEvtxToXmlProcess, (void(QProcess::*)(int))&QProcess::finished, [=]{updateEvtxConvertStatus();});
-        convertSecEvtxToXmlProcess.start("powershell", args);
+        connect(&convertEvtxToXmlProcess, (void(QProcess::*)(int))&QProcess::finished, [=]{updateEvtxConvertStatus();});
+        convertEvtxToXmlProcess.start("powershell", args);
 
     }
     else if(convertType == "CSV"){
@@ -91,13 +92,13 @@ void MainController::fileConvertEvtx(QString convertType, QString fPah, QString 
         emit fileConvertEvtxStatus("Please Wait....");
 
         QStringList args;
-        args << "Set-Location -Path C:/Users/Voldem0rt/Documents/Qt_Projects/Lumberjack/EvtxeCmd/;"
+        args << "Set-Location -Path C:/Users/Voldem0rt/Documents/Qt_Projects/EvtxConverter/EvtxeCmd/;"
              << "./EvtxECmd.exe -f " + fPah.trimmed() +  " --csv " +  savePath.trimmed() + " --csvf " + iFileName.trimmed() + ".csv";
 
         //convertSecEvtxToXmlProcess.connect(&convertSecEvtxToXmlProcess, &QProcess::readyReadStandardOutput, this, &MainController::processStdOutSecLogInfo);
         //convertSecEvtxToXmlProcess.connect(&convertSecEvtxToXmlProcess, &QProcess::readyReadStandardError, this, &MainController::processErrorSecLogInfo);
-        connect(&convertSecEvtxToXmlProcess, (void(QProcess::*)(int))&QProcess::finished, [=]{updateEvtxConvertStatus();});
-        convertSecEvtxToXmlProcess.start("powershell", args);
+        connect(&convertEvtxToCsvProcess, (void(QProcess::*)(int))&QProcess::finished, [=]{updateEvtxConvertStatus();});
+        convertEvtxToCsvProcess.start("powershell", args);
     }
     else{
         //error
@@ -112,8 +113,8 @@ void MainController::dirConvertEvtx(QString convertType, QString fPah, QString s
         emit fileConvertEvtxStatus("Please Wait....");
         QStringList args;
         //Set a permanent location for deployment
-        args << "Set-Location -Path C:/Users/Voldem0rt/Documents/Qt_Projects/Lumberjack/EvtxeCmd/;"
-             << "./EvtxECmd.exe -f " + fPah.trimmed() +  " --json " +  savePath.trimmed();
+        args << "Set-Location -Path C:/Users/Voldem0rt/Documents/Qt_Projects/EvtxConverter/EvtxeCmd/;"
+             << "./EvtxECmd.exe -d " + fPah.trimmed() +  " --json " +  savePath.trimmed();
 
         convertEvtxToJsonProcess.connect(&convertEvtxToJsonProcess, &QProcess::readyReadStandardOutput, this, &MainController::processConvertStdOutInfo);
         convertEvtxToJsonProcess.connect(&convertEvtxToJsonProcess, &QProcess::readyReadStandardError, this, &MainController::processConvertErrorInfo);
@@ -126,13 +127,13 @@ void MainController::dirConvertEvtx(QString convertType, QString fPah, QString s
         emit fileConvertEvtxStatus("Please Wait....");
         QStringList args;
         //Set a permanent location for deployment
-        args << "Set-Location -Path C:/Users/Voldem0rt/Documents/Qt_Projects/Lumberjack/EvtxeCmd/;"
-             << "./EvtxECmd.exe -f " + fPah.trimmed() +  " --fj --json " +  savePath.trimmed() + " --jsonf ";
+        args << "Set-Location -Path C:/Users/Voldem0rt/Documents/Qt_Projects/EvtxConverter/EvtxeCmd/;"
+             << "./EvtxECmd.exe -d " + fPah.trimmed() +  " --fj --json " +  savePath.trimmed() + " --jsonf ";
 
         //convertEvtxToFullJsonProcess.connect(&convertEvtxToFullJsonProcess, &QProcess::readyReadStandardOutput, this, &MainController::processConvertStdOutInfo);
         //convertEvtxToFullJsonProcess.connect(&convertEvtxToFullJsonProcess, &QProcess::readyReadStandardError, this, &MainController::processConvertErrorInfo);
-        connect(&convertEvtxToJsonProcess, (void(QProcess::*)(int))&QProcess::finished, [=]{updateEvtxConvertStatus();});
-        convertEvtxToJsonProcess.start("powershell", args);
+        connect(&convertEvtxToFullJsonProcess, (void(QProcess::*)(int))&QProcess::finished, [=]{updateEvtxConvertStatus();});
+        convertEvtxToFullJsonProcess.start("powershell", args);
 
     }
     else if(convertType == "XML"){
@@ -141,13 +142,13 @@ void MainController::dirConvertEvtx(QString convertType, QString fPah, QString s
         emit fileConvertEvtxStatus("Please Wait....");
 
         QStringList args;
-        args << "Set-Location -Path C:/Users/Voldem0rt/Documents/Qt_Projects/Lumberjack/EvtxeCmd/;"
-             << "./EvtxECmd.exe -f " + fPah.trimmed() +  " --xml " +  savePath.trimmed();
+        args << "Set-Location -Path C:/Users/Voldem0rt/Documents/Qt_Projects/EvtxConverter/EvtxeCmd/;"
+             << "./EvtxECmd.exe -d " + fPah.trimmed() +  " --xml " +  savePath.trimmed();
 
         //convertSecEvtxToXmlProcess.connect(&convertSecEvtxToXmlProcess, &QProcess::readyReadStandardOutput, this, &MainController::processStdOutSecLogInfo);
         //convertSecEvtxToXmlProcess.connect(&convertSecEvtxToXmlProcess, &QProcess::readyReadStandardError, this, &MainController::processErrorSecLogInfo);
-        connect(&convertSecEvtxToXmlProcess, (void(QProcess::*)(int))&QProcess::finished, [=]{updateEvtxConvertStatus();});
-        convertSecEvtxToXmlProcess.start("powershell", args);
+        connect(&convertEvtxToXmlProcess, (void(QProcess::*)(int))&QProcess::finished, [=]{updateEvtxConvertStatus();});
+        convertEvtxToXmlProcess.start("powershell", args);
 
     }
     else if(convertType == "CSV"){
@@ -156,13 +157,13 @@ void MainController::dirConvertEvtx(QString convertType, QString fPah, QString s
         emit fileConvertEvtxStatus("Please Wait....");
 
         QStringList args;
-        args << "Set-Location -Path C:/Users/Voldem0rt/Documents/Qt_Projects/Lumberjack/EvtxeCmd/;"
-             << "./EvtxECmd.exe -f " + fPah.trimmed() +  " --csv " +  savePath.trimmed();
+        args << "Set-Location -Path C:/Users/Voldem0rt/Documents/Qt_Projects/EvtxConverter/EvtxeCmd/;"
+             << "./EvtxECmd.exe -d " + fPah.trimmed() +  " --csv " +  savePath.trimmed();
 
         //convertSecEvtxToXmlProcess.connect(&convertSecEvtxToXmlProcess, &QProcess::readyReadStandardOutput, this, &MainController::processStdOutSecLogInfo);
         //convertSecEvtxToXmlProcess.connect(&convertSecEvtxToXmlProcess, &QProcess::readyReadStandardError, this, &MainController::processErrorSecLogInfo);
-        connect(&convertSecEvtxToXmlProcess, (void(QProcess::*)(int))&QProcess::finished, [=]{updateEvtxConvertStatus();});
-        convertSecEvtxToXmlProcess.start("powershell", args);
+        connect(&convertEvtxToCsvProcess, (void(QProcess::*)(int))&QProcess::finished, [=]{updateEvtxConvertStatus();});
+        convertEvtxToCsvProcess.start("powershell", args);
     }
     else{
         //error
