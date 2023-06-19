@@ -13,6 +13,9 @@
 #include <QFileDialog>
 #include <QDate>
 #include <QByteArray>
+#include <QDirIterator>
+#include <QDir>
+#include <QStandardPaths>
 
 class MainController:  public QWidget{
     Q_OBJECT
@@ -25,6 +28,7 @@ signals:
     void fileNameToQml(QString fileName);
     void filePathToQml(QString filePath);
     void dirPathToQml(QString dirPath);
+    void dirPathSepToQml(QString sDirPath);
     void saveToPathToQml(QString saveToPath);
     void fileConvertEvtxStatus(QString curStatus);
 
@@ -34,9 +38,13 @@ public slots:
     void ce_SaveToPath();
     void fileConvertEvtx(QString, QString, QString, QString);
     void dirConvertEvtx(QString, QString, QString);
+    void dirConvertEachEvtx(QString, QString);
+    void selectDirConvertEachEvtx();
     void updateEvtxConvertStatus();
     void processConvertStdOutInfo();
     void processConvertErrorInfo();
+
+    void checkDirectories();
 
     //void convertEvtxToXml();
     //void convertEvtxToJson();
@@ -61,11 +69,15 @@ private:
     QProcess convertSysEvtxToXmlProcess;
     QProcess convertSysEvtxToJsonProcess;
 
+    //QProcess convertEachEvtxFileProcess();
+
     QString s_StdOutConvertInfo;
     QString s_StdErrConvertInfo;
 
     QByteArray b_StdOutConvertInfo;
     QByteArray b_StdErrConvertInfo;
+    //QStringList list;
+    QStringList listOfFilesToConvert;
 };
 
 #endif // MAINCONTROLLER_H

@@ -35,40 +35,43 @@ Window {
         }
     }
     Connections {
-            target: mainController
+        target: mainController
 
 
-            onProcessingStatus2Qml:{
-                summaryText.text = processingStatus;
-            }
-            //Display the file path
-            onFilePathToQml:{
-                cew_SelectFileTxt.text = filePath
-            }
-            //Display the dir path
-            onDirPathToQml:{
-                cew_SelectDirTxt.text = dirPath
-            }
-            //Display the save to path
-            onSaveToPathToQml:{
-                cew_SaveToTxt.text = saveToPath
-            }
-            onFileConvertEvtxStatus:{
-                cew_logTxtArea.text += curStatus + "\n"
-            }
-            onFileNameToQml:{
-                cew_fileSaveAsNameTxt.text = fileName
-            }
-
-            //function onSecurityEventCount2Qml(secEventCountX) {
-            //secEventCountTxt.text = 11;
-            //console.log("Signal Detected")
-            // }
-            // function onSecurityEventCount2Qml() {
-            // secEventCountTxt.text = secEventCountX
-            //console.log("Signal javascript function Detected")
-            // }
+        onProcessingStatus2Qml:{
+            summaryText.text = processingStatus;
         }
+        //Display the file path
+        onFilePathToQml:{
+            cew_SelectFileTxt.text = filePath
+        }
+        //Display the dir path
+        onDirPathToQml:{
+            cew_SelectDirTxt.text = dirPath
+        }
+        //Display the save to path
+        onSaveToPathToQml:{
+            cew_SaveToTxt.text = saveToPath
+        }
+        onFileConvertEvtxStatus:{
+            cew_logTxtArea.text += curStatus + "\n"
+        }
+        onFileNameToQml:{
+            cew_fileSaveAsNameTxt.text = fileName
+        }
+        onDirPathSepToQml:{
+            selectDirSeparateTxt.text = sDirPath
+        }
+
+        //function onSecurityEventCount2Qml(secEventCountX) {
+        //secEventCountTxt.text = 11;
+        //console.log("Signal Detected")
+        // }
+        // function onSecurityEventCount2Qml() {
+        // secEventCountTxt.text = secEventCountX
+        //console.log("Signal javascript function Detected")
+        // }
+    }
 
 
 
@@ -91,9 +94,9 @@ Window {
 
             Button {
                 id: evtxWinSelectFileBtn
-                x: 213
-                y: 447
-                width: 75
+                x: 169
+                y: 449
+                width: 120
                 height: 25
                 text: qsTr("Select FIle")
                 hoverEnabled: false
@@ -143,9 +146,9 @@ Window {
 
             Button {
                 id: ce_SaveToBtn
-                x: 213
-                y: 533
-                width: 75
+                x: 169
+                y: 577
+                width: 120
                 height: 25
                 text: qsTr("Save To")
                 hoverEnabled: false
@@ -174,7 +177,7 @@ Window {
             Rectangle {
                 id: ecw_SaveToRect
                 x: 304
-                y: 533
+                y: 577
                 width: 839
                 height: 25
                 color: "#000000"
@@ -194,9 +197,9 @@ Window {
 
             Rectangle {
                 id: ecw_TxtDataRect
-                x: 213
+                x: 169
                 y: 64
-                width: 930
+                width: 974
                 height: 360
                 color: "#000000"
                 border.color: "#ffffff"
@@ -205,7 +208,7 @@ Window {
                     id: ecw_scrollview
                     x: 3
                     y: 3
-                    width: 924
+                    width: 968
                     height: 353
 
                     TextArea {
@@ -221,11 +224,11 @@ Window {
 
             Button {
                 id: cew_selectDirBtn
-                x: 213
+                x: 169
                 y: 492
-                width: 75
+                width: 120
                 height: 25
-                text: qsTr("Select Dir")
+                text: qsTr("Select Dir - Combine")
                 layer.effect: DropShadow {
                     width: 100
                     visible: true
@@ -272,8 +275,8 @@ Window {
 
             Button {
                 id: cew_StartBtn
-                x: 450
-                y: 614
+                x: 448
+                y: 667
                 width: 125
                 height: 27
                 text: qsTr("Start")
@@ -301,9 +304,9 @@ Window {
                         console.log("Please select a conversion type...")
                         return;
                     }
-                    else if(cew_SelectFileTxt.text === "" && cew_SelectDirTxt.text === ""){
+                    else if(cew_SelectFileTxt.text === "" && cew_SelectDirTxt.text === "" && selectDirSeparateTxt.text === ""){
                         cew_logTxtArea.text += "Select a file or directory..."+ "\n"
-                        console.log("Select file and select dir felds are empty...")
+                        console.log("Select file and both select dir felds are empty...")
                         return;
                     }
 
@@ -312,19 +315,19 @@ Window {
                         console.log("Select a location to save the converted files...")
                         return;
                     }
-                   // else if(cew_fileSaveAsNameTxt.text === ""){
-                        //cew_logTxtArea.text += "Please enter a name for the file to be converted. Do not include the extension..." + "\n"
-                       // console.log("Please enter a name for the new file. Do not include the extension...")
-                        //return;
+                    // else if(cew_fileSaveAsNameTxt.text === ""){
+                    //cew_logTxtArea.text += "Please enter a name for the file to be converted. Do not include the extension..." + "\n"
+                    // console.log("Please enter a name for the new file. Do not include the extension...")
+                    //return;
                     //}
 
-                    else if(cew_SelectFileTxt.text !== "" && cew_SelectDirTxt.text !== ""){
-                        //This situation should not happen because one field is set to "" when the other is populated, but just in case...
-                        console.log("Select file or dir not both...")
-                        return;
-                    }
-                    else if(cew_SelectFileTxt.text !== "" && cew_SelectDirTxt.text === ""){
-                        console.log("Select file has text and selct dir does not...")
+                    //else if(cew_SelectFileTxt.text !== "" && cew_SelectDirTxt.text !== ""){
+                    //This situation should not happen because one field is set to "" when the other is populated, but just in case...
+                    //console.log("Select file or dir not both...")
+                    //return;
+                    //}
+                    else if(cew_SelectFileTxt.text !== "" && cew_SelectDirTxt.text === "" && selectDirSeparateTxt.text === ""){
+                        console.log("Select file has text and selct dirs does not...")
                         if(cew_fileSaveAsNameTxt.text === ""){
                             console.log("Please enter a file name...")
                             return;
@@ -338,15 +341,25 @@ Window {
                             //console.log("cew_fileSaveAsNameTxt.text " + cew_fileSaveAsNameTxt.text)
                         }
                     }
-                    else if(cew_SelectDirTxt.text !== "" && cew_SelectFileTxt.text === ""){
-                        console.log("Select dir has text and selct file does not...")
+                    else if(cew_SelectDirTxt.text !== "" && cew_SelectFileTxt.text === "" && selectDirSeparateTxt.text === ""){
+                        console.log("Select dir combine has text. select file and select dir separate does not...")
                         if(cew_fileSaveAsNameTxt.text !== ""){
-                            console.log("Error: File name must be blank for directory conversion. Files will be converted using original file names....")
+                            console.log("Error: File name must be blank for directory conversion.....")
                             return;
                         }
                         else{
                             mainController.dirConvertEvtx(control1.currentText, cew_SelectDirTxt.text, cew_SaveToTxt.text)
                             console.log("SENDING Dir DATA TO C++...")
+                        }
+                    }
+                    else if(selectDirSeparateTxt.text !== "" && cew_SelectDirTxt.text === "" &&  cew_SelectFileTxt.text === ""){
+                        if(cew_fileSaveAsNameTxt.text !== ""){
+                            console.log("Error: File name must be blank for directory conversion.....")
+                            return;
+                        }
+                        else{
+                            mainController.dirConvertEachEvtx(control1.currentText, cew_SaveToTxt.text)
+                            console.log("SENDING Dir S DATA TO C++...")
                         }
                     }
                 }
@@ -355,7 +368,7 @@ Window {
             Rectangle {
                 id: ecw_FIleNameRect
                 x: 304
-                y: 573
+                y: 619
                 width: 839
                 height: 25
                 color: "#000000"
@@ -376,7 +389,7 @@ Window {
             Text {
                 id: fileNameLabel
                 x: 218
-                y: 574
+                y: 621
                 color: "#ffffff"
                 text: qsTr("File name:")
                 font.pixelSize: 16
@@ -384,8 +397,8 @@ Window {
 
             Button {
                 id: cew_ClearBtn
-                x: 855
-                y: 614
+                x: 845
+                y: 667
                 width: 125
                 height: 27
                 text: qsTr("Clear")
@@ -425,12 +438,85 @@ Window {
                 source: "file:C:/Users/Voldem0rt/Documents/Qt_Projects/EvtxConverter/images/logo.png"
                 fillMode: Image.PreserveAspectFit
             }
+
+            Button {
+                id: cew_selectDirBtnSeparate
+                x: 169
+                y: 535
+                width: 120
+                height: 25
+                text: qsTr("Select Dir - Separate")
+                palette.buttonText: "#ffffff"
+                layer.enabled: true
+                layer.effect: DropShadow {
+                    width: 100
+                    visible: true
+                    color: "#ffffff"
+                    radius: 8
+                    samples: 17
+                    horizontalOffset: 2
+                    verticalOffset: 2
+                    spread: 0
+                    transparentBorder: true
+                }
+                hoverEnabled: false
+                background: Rectangle {
+                    color: "#161e20"
+                    radius: 50
+                }
+                onClicked: {
+                    mainController.selectDirConvertEachEvtx()
+                }
+            }
+
+            Rectangle {
+                id: ecw_SelectDirRect1
+                x: 304
+                y: 535
+                width: 839
+                height: 25
+                color: "#000000"
+                border.color: "#ffffff"
+                Text {
+                    id: selectDirSeparateTxt
+                    x: 2
+                    y: 2
+                    width: 835
+                    height: 21
+                    color: "#ffffff"
+                    text: qsTr("")
+                    font.pixelSize: 15
+                }
+            }
+
+            Image {
+                id: q1
+                x: 1232
+                y: 674
+                width: 40
+                height: 38
+                source: "file:C:/Users/Voldem0rt/Documents/Qt_Projects/EvtxConverter/images/qmarkBtnRound.png"
+                fillMode: Image.PreserveAspectFit
+
+                MouseArea {
+                    id: mouseArea
+                    x: 0
+                    y: 0
+                    width: 40
+                    height: 38
+                    onClicked: {
+                        cew_logTxtArea.text += "Select file: will convert a single EVTX file to JSON, XML, or CSV.\n\n" +
+                                               "Select Dir Combine: will convert all EVTX files in the directory to a single JSON, XML, or CSV file.\n\n" +
+                                               "Select Dir Separate: will convert and create a JSON, XML, or CSV file for each EVTX file in the directory.\n\n"
+                    }
+                }
+            }
         }
 
         ComboBox {
             id: control1
-            x: 213
-            y: 36
+            x: 169
+            y: 37
             width: 116
             height: 21
             popup: Popup {

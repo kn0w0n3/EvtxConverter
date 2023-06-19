@@ -1,5 +1,6 @@
 QT += quick
 QT += widgets
+QT += core
 
 SOURCES += \
         main.cpp \
