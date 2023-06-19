@@ -1,7 +1,7 @@
 # EvtxConverter
 Convert EVTX files to JSON, XML, CSV  
 
-![GUI_6-19-23](https://github.com/kn0w0n3/EvtxConverter/assets/22214754/5ed56d79-30c0-4b2e-9588-a0489b2e45cb)    
+![GUI_6-19-23_2](https://github.com/kn0w0n3/EvtxConverter/assets/22214754/accbc38c-42e1-44ce-8282-264f96ece299)      
 
 ## **Usage:**  
 
