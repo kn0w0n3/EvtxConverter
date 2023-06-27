@@ -8,6 +8,9 @@ SOURCES += \
 
 resources.files = main.qml 
 resources.prefix = /$${TARGET}
+
+#RC_ICONS = appiconx.ico
+
 RESOURCES += resources
 
 # Additional import path used to resolve QML modules in Qt Creator's code model

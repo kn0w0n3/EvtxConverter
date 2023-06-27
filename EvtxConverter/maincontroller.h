@@ -43,8 +43,9 @@ public slots:
     void updateEvtxConvertStatus();
     void processConvertStdOutInfo();
     void processConvertErrorInfo();
-
     void checkDirectories();
+
+    void evtxCmdFolderExistsResponse();
 
     //void convertEvtxToXml();
     //void convertEvtxToJson();
@@ -69,6 +70,10 @@ private:
     QProcess convertSysEvtxToXmlProcess;
     QProcess convertSysEvtxToJsonProcess;
 
+    QProcess moveEvtxCmdFilesToDocs;
+    QProcess checkEvtxeCmdPathProcess;
+    QProcess moveEvtxeCmdToDocsProcess;
+
     //QProcess convertEachEvtxFileProcess();
 
     QString s_StdOutConvertInfo;
@@ -78,6 +83,8 @@ private:
     QByteArray b_StdErrConvertInfo;
     //QStringList list;
     QStringList listOfFilesToConvert;
+    QString docsFolder = "";
+
 };
 
 #endif // MAINCONTROLLER_H

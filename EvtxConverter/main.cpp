@@ -20,6 +20,6 @@ int main(int argc, char *argv[])
                 QCoreApplication::exit(-1);
         }, Qt::QueuedConnection);
     engine.load(url);
-
+    app.setWindowIcon(QIcon("C:/EvtxConverter/images/appiconx.png"));
     return app.exec();
 }
