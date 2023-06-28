@@ -9,7 +9,7 @@ SOURCES += \
 resources.files = main.qml 
 resources.prefix = /$${TARGET}
 
-RC_FILE = EvtxConverter.rc
+#RC_ICONS = appiconx.ico
 
 RESOURCES += resources
 
