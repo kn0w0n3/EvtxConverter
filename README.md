@@ -12,7 +12,7 @@ Convert EVTX files to JSON, XML, CSV
 ## **Windows Installer Download:**  
 https://github.com/kn0w0n3/EvtxConverter/releases/tag/v1.0.0  
 
-## **Usage:**   
+## **Work Environment:**   
 ![QtLogo](https://user-images.githubusercontent.com/22214754/179895211-d52559ab-35df-4fcc-bf69-7377739330d4.png)  
 Qt Creator 10.0.2    
 Based on Qt 6.4.3 (MSVC 2019, x86_64)    
