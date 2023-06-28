@@ -9,7 +9,7 @@ Convert EVTX files to JSON, XML, CSV
 2) Convert a directory of EVTX files to a single JSON, XML, or CSV file.
 3) Convert a directory of EVTX files to individual JSON, XML, or CSV files.
 
-## **Windows Installer:**  
+## **Windows Installer Download:**  
 https://github.com/kn0w0n3/EvtxConverter/releases/tag/v1.0.0  
 
 ## **Work Environment:**     
