@@ -9,6 +9,8 @@ Window {
     width: 1280
     height: 720
     visible: true
+    maximumWidth: 1280
+    maximumHeight: 720
     title: qsTr("EVTX CONVERTER")
 
     Timer {
@@ -20,7 +22,6 @@ Window {
             clockText.text =  Qt.formatTime(new Date(),"hh:mm:ss")
         }
     }
-
 
     Timer {
         id: dateTimer
@@ -34,9 +35,10 @@ Window {
             curDateTxt.text = currentDate.toLocaleDateString(locale, Locale.ShortFormat);
         }
     }
+
+    //TO DO: Fix depercated syntax
     Connections {
         target: mainController
-
 
         onProcessingStatus2Qml:{
             summaryText.text = processingStatus;
@@ -73,14 +75,14 @@ Window {
         // }
     }
 
-
-
     Rectangle {
         id: rectangle
         x: 0
         y: 0
         width: 1280
         height: 720
+        //maximumHeight: 1280
+        //maximumWidth: 720
         color: "#000000"
 
         Image {
@@ -89,7 +91,8 @@ Window {
             y: 0
             width: 1280
             height: 720
-            source: "file:C:/Users/Voldem0rt/Documents/Qt_Projects/EvtxConverter/images/bg.png"
+            source: "file:C:/EvtxConverter/images/bg.png"
+
             fillMode: Image.PreserveAspectFit
 
             Button {
@@ -119,7 +122,6 @@ Window {
                 palette.buttonText: "#ffffff"
                 onClicked: {
                     mainController.ce_SelectFile()
-
                 }
             }
 
@@ -299,67 +301,56 @@ Window {
                 hoverEnabled: false
                 palette.buttonText: "#ffffff"
                 onClicked: {
+
                     if(control1.currentText === "Convert To"){
                         cew_logTxtArea.text += "Please select a conversion type..."+ "\n"
-                        console.log("Please select a conversion type...")
+                        //console.log("Please select a conversion type...")
                         return;
                     }
                     else if(cew_SelectFileTxt.text === "" && cew_SelectDirTxt.text === "" && selectDirSeparateTxt.text === ""){
-                        cew_logTxtArea.text += "Select a file or directory..."+ "\n"
-                        console.log("Select file and both select dir felds are empty...")
+                        cew_logTxtArea.text += "Select a file or directory..." + "\n"
+                        //console.log("Select file and both select dir felds are empty...")
                         return;
                     }
-
                     else if(cew_SaveToTxt.text === ""){
                         cew_logTxtArea.text += "Select a location to save the converted files" + "\n"
-                        console.log("Select a location to save the converted files...")
+                        //console.log("Select a location to save the converted files...")
+                        cew_logTxtArea.text += "Select a location to save the converted files.....\n"
+
                         return;
                     }
-                    // else if(cew_fileSaveAsNameTxt.text === ""){
-                    //cew_logTxtArea.text += "Please enter a name for the file to be converted. Do not include the extension..." + "\n"
-                    // console.log("Please enter a name for the new file. Do not include the extension...")
-                    //return;
-                    //}
-
-                    //else if(cew_SelectFileTxt.text !== "" && cew_SelectDirTxt.text !== ""){
-                    //This situation should not happen because one field is set to "" when the other is populated, but just in case...
-                    //console.log("Select file or dir not both...")
-                    //return;
-                    //}
                     else if(cew_SelectFileTxt.text !== "" && cew_SelectDirTxt.text === "" && selectDirSeparateTxt.text === ""){
-                        console.log("Select file has text and selct dirs does not...")
+                        //console.log("Select file has text and selct dirs does not...")
                         if(cew_fileSaveAsNameTxt.text === ""){
-                            console.log("Please enter a file name...")
+                            //console.log("Please enter a file name...")
+                            cew_logTxtArea.text += "Please enter a file name.....\n"
                             return;
                         }
                         else{
                             mainController.fileConvertEvtx(control1.currentText, cew_SelectFileTxt.text, cew_SaveToTxt.text, cew_fileSaveAsNameTxt.text)
-                            console.log("SENDING DATA TO C++...")
-                            //console.log("control.currentText " + control.currentText)
-                            //console.log("cew_SelectFileTxt.text " + cew_SelectFileTxt.text)
-                            //console.log("cew_SaveToTxt.text " + cew_SaveToTxt.text)
-                            //console.log("cew_fileSaveAsNameTxt.text " + cew_fileSaveAsNameTxt.text)
                         }
                     }
                     else if(cew_SelectDirTxt.text !== "" && cew_SelectFileTxt.text === "" && selectDirSeparateTxt.text === ""){
-                        console.log("Select dir combine has text. select file and select dir separate does not...")
+                        //console.log("Select dir combine has text. select file and select dir separate does not...")
                         if(cew_fileSaveAsNameTxt.text !== ""){
-                            console.log("Error: File name must be blank for directory conversion.....")
+                            //console.log("Error: File name must be blank for directory conversion.....")
+                            cew_logTxtArea.text += "Error: File name must be blank for directory conversion.....\n"
                             return;
                         }
                         else{
                             mainController.dirConvertEvtx(control1.currentText, cew_SelectDirTxt.text, cew_SaveToTxt.text)
-                            console.log("SENDING Dir DATA TO C++...")
+                            //console.log("SENDING Dir DATA TO C++...")
                         }
                     }
                     else if(selectDirSeparateTxt.text !== "" && cew_SelectDirTxt.text === "" &&  cew_SelectFileTxt.text === ""){
                         if(cew_fileSaveAsNameTxt.text !== ""){
-                            console.log("Error: File name must be blank for directory conversion.....")
+                            //console.log("Error: File name must be blank for directory conversion.....")
+                            cew_logTxtArea.text += "Error: File name must be blank for directory conversion.....\n"
                             return;
                         }
                         else{
                             mainController.dirConvertEachEvtx(control1.currentText, cew_SaveToTxt.text)
-                            console.log("SENDING Dir S DATA TO C++...")
+                           //console.log("SENDING Dir S DATA TO C++...")
                         }
                     }
                 }
@@ -435,7 +426,7 @@ Window {
                 y: 8
                 width: 260
                 height: 27
-                source: "file:C:/Users/Voldem0rt/Documents/Qt_Projects/EvtxConverter/images/logo.png"
+                source: "file:C:/EvtxConverter/images/logo.png"
                 fillMode: Image.PreserveAspectFit
             }
 
@@ -466,6 +457,7 @@ Window {
                 }
                 onClicked: {
                     mainController.selectDirConvertEachEvtx()
+                    //selectDirSeparateTxt.text = ""
                 }
             }
 
@@ -495,7 +487,7 @@ Window {
                 y: 674
                 width: 40
                 height: 38
-                source: "file:C:/Users/Voldem0rt/Documents/Qt_Projects/EvtxConverter/images/qmarkBtnRound.png"
+                source: "file:C:/EvtxConverter/images/qmarkBtnRound.png"
                 fillMode: Image.PreserveAspectFit
 
                 MouseArea {
