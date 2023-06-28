@@ -236,64 +236,8 @@ void MainController::checkDirectories(){
     docsFolder = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     QDir docsDir(docsFolder + "/EvtxConverter");
 
-    //Main JSON, XML, and CSV directories
-    QDir docsJsonDir(docsFolder + "/EvtxConverter/json");
-    QDir docsXmlDir(docsFolder + "/EvtxConverter/xml");
-    QDir docsCsvDir(docsFolder + "/EvtxConverter/csv");
-
-    //JSON subdirectories for System, Application, and Security files
-    QDir docsJsonSysDir(docsFolder + "/EvtxConverter/json/system");
-    QDir docsJsonAppDir(docsFolder + "/EvtxConverter/json/application");
-    QDir docsJsonSecDir(docsFolder + "/EvtxConverter/json/security");
-
-    //XML subdirectories for System, Application, and Security files
-    QDir docsXmlSysDir(docsFolder + "/EvtxConverter/xml/system");
-    QDir docsXmlAppDir(docsFolder + "/EvtxConverter/xml/application");
-    QDir docsXmlSecDir(docsFolder + "/EvtxConverter/xml/security");
-
-    //CSV subdirectories for System, Application, and Security files
-    QDir docsCsvSysDir(docsFolder + "/EvtxConverter/csv/system");
-    QDir docsCsvAppDir(docsFolder + "/EvtxConverter/csv/application");
-    QDir docsCsvSecDir(docsFolder + "/EvtxConverter/csv/security");
-
     if(!docsDir.exists()){
         QDir().mkdir(docsFolder + "/EvtxConverter/");
-    }
-    if(!docsJsonDir.exists()){
-        QDir().mkdir(docsFolder + "/EvtxConverter/json");
-    }
-    if(!docsXmlDir.exists()){
-        QDir().mkdir(docsFolder + "/EvtxConverter/xml");
-    }
-    if(!docsCsvDir.exists()){
-        QDir().mkdir(docsFolder + "/EvtxConverter/csv");
-    }
-    if(!docsJsonSysDir.exists()){
-        QDir().mkdir(docsFolder + "/EvtxConverter/json/system");
-    }
-    if(!docsJsonAppDir.exists()){
-        QDir().mkdir(docsFolder + "/EvtxConverter/json/application");
-    }
-    if(!docsJsonSecDir.exists()){
-        QDir().mkdir(docsFolder + "/EvtxConverter/json/security");
-    }
-    if(!docsXmlSysDir.exists()){
-        QDir().mkdir(docsFolder + "/EvtxConverter/xml/system");
-    }
-    if(!docsXmlAppDir.exists()){
-        QDir().mkdir(docsFolder + "/EvtxConverter/xml/application");
-    }
-    if(!docsXmlSecDir.exists()){
-        QDir().mkdir(docsFolder + "/EvtxConverter/xml/security");
-    }
-    if(!docsCsvSysDir.exists()){
-        QDir().mkdir(docsFolder + "/EvtxConverter/csv/system");
-    }
-    if(!docsCsvAppDir.exists()){
-        QDir().mkdir(docsFolder + "/EvtxConverter/csv/appliation");
-    }
-    if(!docsCsvSecDir.exists()){
-        QDir().mkdir(docsFolder + "/EvtxConverter/csv/security");
     }
 
     //Check if the EvtxeCmd folder exists in the Documents\EvtxConverter folder
