@@ -1,5 +1,5 @@
 # EvtxConverter
-Convert EVTX files to JSON, XML, CSV  | Download: https://github.com/kn0w0n3/EvtxConverter/releases/tag/v1.0.0  
+Convert EVTX files to JSON, XML, CSV  | Download: https://github.com/kn0w0n3/EvtxConverter/releases/tag/v1.1.0    
 
 ![GUI_6-19-23_2](https://github.com/kn0w0n3/EvtxConverter/assets/22214754/accbc38c-42e1-44ce-8282-264f96ece299)      
 
@@ -10,7 +10,7 @@ Convert EVTX files to JSON, XML, CSV  | Download: https://github.com/kn0w0n3/Evt
 3) Convert a directory of EVTX files to individual JSON, XML, or CSV files.
 
 ## **Windows Installer Download:**  
-https://github.com/kn0w0n3/EvtxConverter/releases/tag/v1.0.0  
+https://github.com/kn0w0n3/EvtxConverter/releases/tag/v1.1.0    
 
 # **Requirements:**     
 .NET 6.0 Runtime: https://aka.ms/dotnet-core-applaunch?framework=Microsoft.NETCore.App&framework_version=6.0.0&arch=x64&rid=win10-x64    
