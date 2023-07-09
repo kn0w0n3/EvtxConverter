@@ -1,5 +1,5 @@
 # EvtxConverter
-Convert EVTX files to JSON, XML, CSV  
+Convert EVTX files to JSON, XML, CSV  Download: https://github.com/kn0w0n3/EvtxConverter/releases/tag/v1.0.0  
 
 ![GUI_6-19-23_2](https://github.com/kn0w0n3/EvtxConverter/assets/22214754/accbc38c-42e1-44ce-8282-264f96ece299)      
 
