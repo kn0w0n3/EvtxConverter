@@ -79,8 +79,6 @@ void MainController::fileConvertEvtx(QString convertType, QString fPah, QString 
 void MainController::dirConvertEvtx(QString convertType, QString fPah, QString savePath){
     if(convertType == "JSON"){
         emit fileConvertEvtxStatus("EVTX to JSON conversion process starting " + QDateTime::currentDateTime().toString("MM/dd/yyyy h:mm:ss ap"));
-        emit fileConvertEvtxStatus("Please Wait....");
-        qDebug() << "SAVE PATH IS: " + savePath;
         QStringList args;
         //Set a permanent location for deployment
         args << "Set-Location -Path " + docsFolder + "/EvtxConverter/EvtxeCmd/;"
@@ -186,11 +184,11 @@ void MainController::selectDirConvertEachEvtx(){
     QFileInfoList list = dir.entryInfoList();
     for (int i = 0; i < list.size(); ++i) {
         QFileInfo fileInfo = list.at(i);
-
         listOfFilesToConvert << fileInfo.absoluteFilePath();
     }
 }
 
+//Update the UI when comversion is complete
 void MainController::updateEvtxConvertStatus(){
     emit fileConvertEvtxStatus("Conversion completed @ " +  QDateTime::currentDateTime().toString("MM/dd/yyyy h:mm:ss ap"));
     emit fileNameToQml("");
@@ -200,20 +198,9 @@ void MainController::updateEvtxConvertStatus(){
     emit dirPathSepToQml("");
 }
 
+//Update the UI when comversion is complete for each file
 void MainController::updateIndividualEvtxConvertStatus(QString fileName){
     emit fileConvertEvtxStatus("Conversion for: " + fileName +  " completed @ " +  QDateTime::currentDateTime().toString("MM/dd/yyyy h:mm:ss ap"));
-}
-
-void MainController::processConvertStdOutInfo(){
-    b_StdOutConvertInfo += convertEvtxToJsonProcess.readAllStandardOutput().trimmed();
-    s_StdOutConvertInfo = QString(b_StdOutConvertInfo);
-    //qDebug() << "Std out convert evtx Info: " + s_StdOutConvertInfo;
-}
-
-void MainController::processConvertErrorInfo(){
-    b_StdErrConvertInfo += convertEvtxToJsonProcess.readAllStandardError().trimmed();
-    s_StdErrConvertInfo = QString(b_StdErrConvertInfo);
-    //qDebug() << "Error Convert Info: " + s_StdErrConvertInfo;
 }
 
 //Get the Documents path. Check to see if directories exist. Create directories if needed.
@@ -244,7 +231,6 @@ void MainController::evtxCmdFolderExistsResponse(){
     }
     else{
         QString targetDir = "C:/EvtxConverter/EvtxeCmd/";
-        qDebug() << "Target Dir is: " + targetDir;
         QStringList args;
         args << "Copy-Item -Path "  + targetDir +  " -Destination " + docsFolder + "/EvtxConverter/EvtxeCmd/ -Recurse";
         moveEvtxeCmdToDocsProcess.start("powershell", args);
