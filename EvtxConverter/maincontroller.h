@@ -41,6 +41,7 @@ public slots:
     void dirConvertEachEvtx(QString, QString);
     void selectDirConvertEachEvtx();
     void updateEvtxConvertStatus();
+    void updateIndividualEvtxConvertStatus(QString);
     void processConvertStdOutInfo();
     void processConvertErrorInfo();
     void checkDirectories();
